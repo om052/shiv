@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Surprise Message</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #a8edea, #fed6e3, #d299c2, #fef9d7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        .particle:nth-child(odd) {
+            animation-delay: -1s;
+        }
+        .particle:nth-child(even) {
+            animation-delay: -3s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+        .surprise-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            text-align: center;
+            animation: popIn 1s ease-out, glow 2s infinite alternate 1s;
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            to { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+        h1 {
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        button {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="surprise-card">
+        <h1>🎈 Surprise! 🎈</h1>
+        <p id="surpriseMessage">Get ready for an amazing birthday adventure!</p>
+        <button onclick="nextPage()">Continue the Journey</button>
+    </div>
+    <script>
+        const name = localStorage.getItem('birthdayName') || 'Friend';
+        document.getElementById('surpriseMessage').textContent = `Get ready for an amazing birthday adventure, ${name}!`;
+        
+        function nextPage() {
+            window.location.href = 'page3.html';
+        }
+    </script>
+</body>
+</html>

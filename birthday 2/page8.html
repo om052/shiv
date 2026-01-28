@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Balloon Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ffecd2, #fcb69f, #ff9a9e, #fecfef);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .balloon {
+            width: 80px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #ff69b4, #ffb6c1);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+        .balloon.popped {
+            opacity: 0;
+            transform: scale(0);
+        }
+        .string {
+            width: 2px;
+            height: 50px;
+            background: #333;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        .message {
+            display: none;
+            text-align: center;
+            z-index: 1;
+        }
+        .message h2 {
+            color: #ff69b4;
+            font-size: 2em;
+        }
+        .message p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        button {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <h1>🎈 Pop the Balloons! 🎈</h1>
+    <div class="balloon" id="balloon1" style="top: 20%; left: 20%;"><div class="string"></div></div>
+    <div class="balloon" id="balloon2" style="top: 30%; left: 50%;"><div class="string"></div></div>
+    <div class="balloon" id="balloon3" style="top: 40%; left: 80%;"><div class="string"></div></div>
+    <div class="balloon" id="balloon4" style="top: 60%; left: 30%;"><div class="string"></div></div>
+    <div class="balloon" id="balloon5" style="top: 70%; left: 70%;"><div class="string"></div></div>
+    <div class="message" id="gameMessage">
+        <h2>🎉 All Balloons Popped! 🎉</h2>
+        <p>Great job! Now for the final surprise...</p>
+        <button onclick="nextPage()">Happy Birthday Darling!</button>
+    </div>
+    <script>
+        const balloons = document.querySelectorAll('.balloon');
+        let poppedCount = 0;
+
+        balloons.forEach(balloon => {
+            balloon.addEventListener('click', () => {
+                if (!balloon.classList.contains('popped')) {
+                    balloon.classList.add('popped');
+                    poppedCount++;
+                    if (poppedCount === balloons.length) {
+                        document.getElementById('gameMessage').style.display = 'block';
+                    }
+                }
+            });
+        });
+
+        function nextPage() {
+            window.location.href = 'page9.html';
+        }
+    </script>
+</body>
+</html>
