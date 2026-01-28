@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Memories</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #a8e6cf, #dcedc8, #ffd3a5, #ffaaa5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        .particle:nth-child(odd) {
+            animation-delay: -0.5s;
+        }
+        .particle:nth-child(even) {
+            animation-delay: -1.5s;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        h1 {
+            color: #4a90e2;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+        .memory-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            z-index: 1;
+        }
+        .memory {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+        }
+        .memory.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .memory:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
+        }
+        button {
+            background: linear-gradient(45deg, #4a90e2, #5ba0f2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            z-index: 1;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <h1>💖 Cherished Memories 💖</h1>
+    <div class="memory-container" id="memoryContainer">
+        <!-- Placeholder memories -->
+        <div class="memory">🎂</div>
+        <div class="memory">🎈</div>
+        <div class="memory">🎁</div>
+        <div class="memory">🌟</div>
+        <div class="memory">❤️</div>
+        <div class="memory">😊</div>
+        <div class="memory">🎉</div>
+        <div class="memory">🥳</div>
+    </div>
+    <button onclick="nextPage()">Play Game</button>
+    <script>
+        const memories = document.querySelectorAll('.memory');
+        let currentIndex = 0;
+
+        function showNextMemory() {
+            if (currentIndex < memories.length) {
+                memories[currentIndex].classList.add('show');
+                currentIndex++;
+                setTimeout(showNextMemory, 1000); // Show next memory after 1 second
+            }
+        }
+
+        // Start showing memories after page load
+        setTimeout(showNextMemory, 500);
+
+        function nextPage() {
+            window.location.href = 'page8.html';
+        }
+    </script>
+</body>
+</html>

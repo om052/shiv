@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise - Birthday Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #ffecd2, #fcb69f, #ff9a9e, #fecfef);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: sparkle 4s infinite ease-in-out;
+        }
+        .particle:nth-child(odd) {
+            animation-delay: -1s;
+        }
+        .particle:nth-child(even) {
+            animation-delay: -2s;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 1; }
+        }
+        .card-container {
+            perspective: 1000px;
+            position: relative;
+            z-index: 1;
+        }
+        .card {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+        }
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-front {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+        }
+        .card-back {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            transform: rotateY(180deg);
+            flex-direction: column;
+        }
+        button {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="card-container">
+        <div class="card" id="birthdayCard">
+            <div class="card-front">
+                🎂 Happy Birthday! 🎂
+            </div>
+            <div class="card-back">
+                <p id="cardMessage">Wishing you a day filled with love and joy!</p>
+                <button onclick="nextPage()">Continue</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const name = localStorage.getItem('birthdayName') || 'Friend';
+        document.getElementById('cardMessage').textContent = `Wishing you a day filled with love and joy, ${name}!`;
+
+        const card = document.getElementById('birthdayCard');
+        setTimeout(() => {
+            card.classList.add('flipped');
+        }, 1000); // Auto flip after 1 second
+
+        function nextPage() {
+            window.location.href = 'page7.html';
+        }
+    </script>
+</body>
+</html>
